@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppReclama.Views.MeuPerfil"
+             BackgroundColor="#1F3F77"
+             x:Name="Pagina">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Atualizar"
+                     IconImageSource="{OnPlatform Android=refresh24, UWP=Assets/refresh24.png}"
+                     Command="{Binding AtualizarLista}"
+                     Order="Primary" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Image x:Name="perfil_pequeno" 
+               WidthRequest="100" 
+               HeightRequest="100" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"              
+               />
+                
+                <Label Text="Maria da Silva"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       TextColor="#ffff"
+                       FontSize="30" />
+                <TableView Intent="Form">
+                    <TableRoot>
+                        <TableSection Title="Nome Completo"  TextColor="#ffff"/>
+                        <TableSection Title="Email"  TextColor="#ffff"/>
+                        <TableSection Title="CPF"  TextColor="#ffff"/>
+                        <TableSection Title="RG"  TextColor="#ffff"/>
+                    </TableRoot>
+                </TableView>
+
+                <Label Text="1 Denúncias, 1 Em andamento, 0 Resolvidos " 
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand" 
+                       TextColor="#ffff"/>                
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" Background="#eee">
+                <SearchBar Placeholder="Busque por Descrição" Text="{Binding ParametroBusca }" />
+                <Button Text="Buscar" Command="{Binding Buscar}" />
+            </StackLayout>
+            <StackLayout>
+                <RefreshView IsRefreshing="{Binding EstaAtualizando, Mode=OneWay}"
+                         Command="{Binding AtualizarLista}">
+
+                    <ListView ItemsSource="{Binding ListaReclamacoes}" Background="#1F3F77">
+                        <ListView.Header>
+                            <Grid RowDefinitions="Auto"
+                              ColumnDefinitions="*,*,*" BackgroundColor="White">
+                                <Label Grid.Row="0" Grid.Column="0" Text="Número" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="Descrição" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="Endereco" />
+                                <Label Grid.Row="0" Grid.Column="3" Text="Imagem" />
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Text="Detalhes"
+                                              Command="{Binding Source={x:Reference Pagina}, Path=BindingContext.AbrirDetalhesReclamacao }"
+                                              CommandParameter="{Binding Id}"/>
+
+                                        <MenuItem Text="Excluir"
+                                              Command="{Binding Source={x:Reference Pagina}, Path=BindingContext.Remover }"
+                                              CommandParameter="{Binding Id}" />
+                                    </ViewCell.ContextActions>
+
+                                    <Grid RowDefinitions="Auto"
+                                      ColumnDefinitions="*,*,*">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" TextColor="White" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Descricao}" TextColor="White"/>
+                                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Endereco}" TextColor="White"/>
+                                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding Imagem}" TextColor="White" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </RefreshView>
+            </StackLayout>            
+        </StackLayout>
+        
+        
+        
+
+        <!--<ScrollView>
+            <StackLayout>
+                <Image Source="perfil_pequeno.png" 
+               WidthRequest="100" 
+               HeightRequest="100" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"              
+               />
+
+                
+
+                <StackLayout BackgroundColor="White">  -->
+
+
+
+
+
+
+
+
+           
+
+
+                    
+
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:views ="clr-namespace:AppReclama.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#1F3F77"
+             x:Class="AppReclama.MainPage"
+             Title="Menu">
+
+
+    <Shell.FlyoutHeader>
+        <Frame BackgroundColor="#1F3F77" Padding="50">
+            <Image x:Name="logotipo"/>
+        </Frame>
+        
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Feed">
+        <views:Feed/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Perfil" Route="MeuPerfil">
+        <views:MeuPerfil/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Fazer Reclamação" Route="CadastroReclamacao">
+        <views:fzrreclama />
+    </FlyoutItem>
+    
+
+    <FlyoutItem Title="Configurações">
+        <views:Config />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Ajuda">
+        <views:Help/>
+    </FlyoutItem>
+        
+</Shell>
+
+

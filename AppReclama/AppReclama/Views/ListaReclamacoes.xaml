@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppReclama.Views.ListaReclamacoes"  >
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Atualizar"
+                     IconImageSource="{OnPlatform Android=refresh24, UWP=Assets/refresh24.png}"
+                     Command="{Binding AtualizarLista}"
+                     Order="Primary" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <SearchBar Placeholder="Busque por Descrição" Text="{Binding ParametroBusca }" />
+                <Button Text="Buscar" Command="{Binding Buscar}" />
+            </StackLayout>
+
+
+            <RefreshView IsRefreshing="{Binding EstaAtualizando, Mode=OneWay}"
+                         Command="{Binding AtualizarLista}">
+
+                <ListView ItemsSource="{Binding ListaReclamacoes}">
+                    <ListView.Header>
+                        <Grid RowDefinitions="Auto"
+                              ColumnDefinitions="*,*,*">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Id" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="Descrição" />
+                            <Label Grid.Row="0" Grid.Column="2" Text="Endereco" />
+                            <Label Grid.Row="0" Grid.Column="3" Text="Imagem" />
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Detalhes"
+                                              Command="{Binding Source={x:Reference Pagina}, Path=BindingContext.AbrirDetalhesReclamacao }"
+                                              CommandParameter="{Binding Id}"/>
+
+                                    <MenuItem Text="Excluir"
+                                              Command="{Binding Source={x:Reference Pagina}, Path=BindingContext.Remover }"
+                                              CommandParameter="{Binding Id}" />
+                                </ViewCell.ContextActions>
+
+                                <Grid RowDefinitions="Auto"
+                                      ColumnDefinitions="*,*,*">
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" />
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Descricao}" />
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding Endereco}" />
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding Imagem}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
