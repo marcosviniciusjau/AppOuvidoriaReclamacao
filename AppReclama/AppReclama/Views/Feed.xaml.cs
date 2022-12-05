@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppReclama.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,10 @@ namespace AppReclama.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Feed : ContentPage
     {
+
         public Feed()
         {
+            BindingContext = new FeedViewModel();
             InitializeComponent();
             logo.Source = ImageSource.FromResource("AppReclama.Img.peixelogotipo.png");
         }

@@ -249,8 +249,8 @@
                                       Source="nao_gosto_polegar" Aspect="AspectFit"
                                     HorizontalOptions="Center"/>
 
-
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
+                        
+                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
                                    Text="Rafaela Lanches"
                                    FontSize="25"
                                    TextColor="White"
@@ -261,15 +261,16 @@
                                    Text="Bom dia"
                                    TextColor="WhiteSmoke"
                                    FontSize="20"></Label>
-
-                            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2"
-                                   Text="meu vizinho ta tocando aaaa kids do felps e o cellbit em LOOP!!!!!! Deus abençoe, que a policia chege a tempo "
-                                   TextColor="WhiteSmoke"
+                            <ListView ItemsSource="{Binding ListaReclamacoes}" Background="#1F3F77">
+                                <ListView.Header>
+                                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2"
+                                    Text="{Binding Descricao}"  TextColor="WhiteSmoke"
                                    FontSize="15"></Label>
 
+                                </ListView.Header>
+                            </ListView>
                         </Grid>
-
-                    </Frame>
+                </Frame>
 
                     <Frame Grid.Row="3" Grid.Column="0"
                         Style="{StaticResource EspReclamacao}">
